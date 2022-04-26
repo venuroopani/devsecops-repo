@@ -24,14 +24,14 @@ stages{
   sh  "mvn clean package"
   }
   }
-/*
- stage('ExecuteSonarQubeReport'){
-  steps{
-  sh  "mvn clean sonar:sonar"
+ stage('SCA'){
+  script{
+	dependencyCheck additionalArguments: '', odcInstallation: 'sca'
+	dependencyCheckPublisher failedTotalCritical: 1, failedTotalHigh: 1, failedTotalLow: 1, failedTotalMedium: 1, pattern: '**/dependency-check-report.xml'
   }
   }
   
-  stage('UploadArtifactsIntoNexus'){
+ /* stage('UploadArtifactsIntoNexus'){
   steps{
   sh  "mvn clean deploy"
   }
