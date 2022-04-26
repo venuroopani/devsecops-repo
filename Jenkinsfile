@@ -47,6 +47,5 @@ stages{
   */
 }//Stages Closing
 
-}
 
 }//Pipeline closing
