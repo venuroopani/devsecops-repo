@@ -44,6 +44,23 @@ stages{
 	  }
   }
   }
+        stage('SAST-SONARQUBE') {
+          steps {
+            withSonarQubeEnv(credentialsId: 'sonar-token') {
+               sh '''${scannerHome}/bin/sonar-scanner \
+	       	   -Dsonar.organization=devsecops-sast \
+	       	   -Dsonar.projectKey=sast-java-key \
+                   -Dsonar.projectName=sast-java \
+                   -Dsonar.projectVersion=1.0 \
+                   -Dsonar.sources=src/ \
+                   -Dsonar.java.binaries=target/ '''
+            }
+
+            timeout(time: 20, unit: 'SECONDS') {
+               waitForQualityGate abortPipeline: true
+            }
+          }
+        }
  /* stage('UploadArtifactsIntoNexus'){
   steps{
   sh  "mvn clean deploy"
