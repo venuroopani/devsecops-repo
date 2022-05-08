@@ -36,7 +36,12 @@ stages{
   steps{
 	  script{
 	dependencyCheckPublisher failedTotalCritical: 1, failedTotalHigh: 1, failedTotalLow: 1, failedTotalMedium: 1, pattern: '**/dependency-check-report.xml'
-  }
+  	if (currentBuild.rawBuild.getLog(50).contains('[DependencyCheck] Findings exceed configured thresholds')) {
+        error("Build failed due to vulnerabilities found during dependencyCheck")    
+}else{
+        sh 'echo "No vulnerabilities found during dependencyCheck"'
+}
+	  }
   }
   }
  /* stage('UploadArtifactsIntoNexus'){
