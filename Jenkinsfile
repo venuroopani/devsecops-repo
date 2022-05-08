@@ -32,6 +32,7 @@ stages{
   }
   }
   }
+/*
   stage('SCA-RESULTS-CHECK'){
   steps{
 	  script{
@@ -40,10 +41,11 @@ stages{
         error("Build failed due to vulnerabilities found during dependencyCheck")    
 }else{
         sh 'echo "No vulnerabilities found during dependencyCheck"'
-}
+} 
 	  }
   }
   }
+*/
         stage('SAST-SONARQUBE') {
           steps {
             withSonarQubeEnv('sonarcloud') {
