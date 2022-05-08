@@ -28,7 +28,7 @@ stages{
   steps{
 	  script{
 	dependencyCheck additionalArguments: '', odcInstallation: 'sca'
-	dependencyCheckPublisher failedTotalCritical: 1, failedTotalHigh: 1, failedTotalLow: 1, failedTotalMedium: 1, pattern: '**/dependency-check-report.xml'
+	
   }
   }
   }
