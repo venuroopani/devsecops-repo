@@ -44,7 +44,7 @@ stages{
 //	  } 
 //  }
 //  }
-        stage('SAST-SONARQUBE') {
+        stage('sonar') {
           steps {
             withSonarQubeEnv('sonarcloud') {
                sh '''${scannerHome}/bin/sonar-scanner \
