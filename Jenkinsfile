@@ -47,7 +47,7 @@ stages{
         stage('SAST-SONARQUBE') {
           steps {
             withSonarQubeEnv('sonarcloud') {
-               sh '''${scannerHome}/bin/sonar-scanner \
+               sh '''sonar-scanner \
 	       	   -Dsonar.organization=devsecops-sast \
 	       	   -Dsonar.projectKey=sast-java-key \
                    -Dsonar.projectName=sast-java \
